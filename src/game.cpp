@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "game.hpp"
 
-Game::Game(): window("Farming life", sf::Vector2u(800,600)), textureManager() {}
+Game::Game(): window("Farmer life", sf::Vector2u(800,800)), textureManager() {}
 
 Window* Game::getWindow() 
 {
