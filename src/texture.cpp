@@ -1,27 +1,23 @@
 #include "texture.hpp"
-#include "iostream"
 
 namespace Texture
 {
     TextureManager::TextureManager()
     {
-        loadTextures();
+        tileset = new sf::Texture();
+        auto successfull = tileset->loadFromFile("Assets/tileset.png");
     }
 
-    sf::Texture* TextureManager::getTexture(Texture::TextureType type)
+    sf::Sprite* TextureManager::sprite(TextureType type)
     {
-        if (textures.find(type) != textures.end())
-        {
-            return textures[type];
+        sf::IntRect tileRect;
+
+        switch (type) {
+            case GRASS:
+                tileRect = sf::IntRect({2 * 16, 2 * 16}, {16, 16});
+                break;
         }
-        std::cout << "Texture not found with id: " << type << std::endl;
-        return nullptr;
-    }
-
-    void TextureManager::loadTextures()
-    {
-        sf::Texture* texture;
-        auto successfull =texture->loadFromFile("Assets/empty.png");
-        textures[EMPTY] = texture;
+        
+        return new sf::Sprite(*tileset, tileRect);
     }
 }

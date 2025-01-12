@@ -17,7 +17,7 @@ bool Window::isOpen()
     return window.isOpen();
 }
 
-sf::View mainView(sf::FloatRect({-160.f, -160.f}, {500.f, 500.f}));
+sf::View mainView(sf::FloatRect({-150.f, -150.f}, {200.f, 200.f}));
 
 void Window::beginDraw()
 {

@@ -8,7 +8,7 @@ namespace Texture
 {
     enum TextureType
     {
-        EMPTY
+        GRASS
     };
 
     class TextureManager
@@ -16,12 +16,10 @@ namespace Texture
     public:
         TextureManager();
 
-        sf::Texture* getTexture(TextureType type);
+        sf::Sprite* sprite(TextureType type);
 
     private:
-        std::map<TextureType, sf::Texture*> textures;
-
-        void loadTextures();
+        sf::Texture* tileset;
     };
 }
 
