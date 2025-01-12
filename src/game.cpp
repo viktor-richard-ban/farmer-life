@@ -18,7 +18,14 @@ void Game::update()
 void Game::render()
 {
     window.beginDraw();
+ 
+    for (sf::Sprite* sprite : tiles) {
+        delete sprite;
+        sprite = nullptr;
+    }
+    tiles.clear();
     drawMap();
+
     window.endDraw();
 }
 
@@ -28,6 +35,7 @@ void Game::drawMap()
         for (int x = 0; x < 10; x++) {
             sf::Sprite* tile = textureManager.sprite(Texture::GRASS);
             tile->setOrigin({(float)x * 16, (float)y * 16});
+            tiles.push_back(tile);
 
             window.draw(*tile);
         }

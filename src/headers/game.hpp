@@ -1,3 +1,5 @@
+#include <SFML/Graphics.hpp>
+#include <vector>
 #include "window.hpp"
 #include "texture.hpp"
 
@@ -17,6 +19,7 @@ public:
 private:
     Window window;
     Texture::TextureManager textureManager;
+    std::vector<sf::Sprite*> tiles;
 
     void drawMap();
 };
