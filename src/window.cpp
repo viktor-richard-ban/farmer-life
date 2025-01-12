@@ -2,7 +2,7 @@
 #include "window.hpp"
 #include<iostream>
 
-Window::Window(const std::string& title, const sf::Vector2u& size): window(sf::VideoMode({1360, 800}), "SFML window")
+Window::Window(const std::string& title, const sf::Vector2u& size): window(sf::VideoMode({800, 800}), "SFML window")
 {
     std::cout << "Window has been constructed with title: " << title << std::endl;
 }
@@ -17,7 +17,7 @@ bool Window::isOpen()
     return window.isOpen();
 }
 
-sf::View mainView(sf::FloatRect({0.f, 0.f}, {300.f, 300.f}));
+sf::View mainView(sf::FloatRect({-160.f, -160.f}, {500.f, 500.f}));
 
 void Window::beginDraw()
 {
@@ -46,28 +46,27 @@ void Window::update()
             window.close();
         }
 
-        if (event->is<sf::Event::KeyPressed>() &&
-            event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::A)
+        if (event->is<sf::Event::KeyPressed>())
         {
-            mainView.move({-5,0});
-        }
+            if (event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::A)
+            {
+                mainView.move({-8,0});
+            }
 
-        if (event->is<sf::Event::KeyPressed>() &&
-            event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::D)
-        {
-            mainView.move({5,0});
-        }
+            if (event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::D)
+            {
+                mainView.move({8,0});
+            }
 
-        if (event->is<sf::Event::KeyPressed>() &&
-            event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::W)
-        {
-            mainView.move({0,-5});
-        }
+            if (event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::W)
+            {
+                mainView.move({0,-8});
+            }
 
-        if (event->is<sf::Event::KeyPressed>() &&
-            event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::S)
-        {
-            mainView.move({0,5});
+            if (event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::S)
+            {
+                mainView.move({0,8});
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 #include "window.hpp"
+#include "texture.hpp"
 
 #ifndef GAME_HPP
 #define GAME_HPP
@@ -15,4 +16,7 @@ public:
 
 private:
     Window window;
+    Texture::TextureManager textureManager;
+
+    void drawMap();
 };
