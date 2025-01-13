@@ -22,4 +22,5 @@ private:
     std::vector<sf::Sprite*> tiles;
 
     void drawMap();
+    void drawCharacter();
 };

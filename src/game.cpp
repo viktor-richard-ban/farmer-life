@@ -24,7 +24,9 @@ void Game::render()
         sprite = nullptr;
     }
     tiles.clear();
+
     drawMap();
+    drawCharacter();
 
     window.endDraw();
 }
@@ -40,4 +42,21 @@ void Game::drawMap()
             window.draw(*tile);
         }
     }
+}
+
+void Game::drawCharacter()
+{
+    int width = 11;
+    int height = 15;
+
+    sf::View* camera = window.getCamera();
+    float x = camera->getCenter().x - width / 2;
+    float y = camera->getCenter().y - height / 2;
+
+    sf::Sprite* tile = textureManager.sprite(Texture::HUMAN);
+    tile->setPosition({x, y});
+
+    tiles.push_back(tile);
+
+    window.draw(*tile);
 }

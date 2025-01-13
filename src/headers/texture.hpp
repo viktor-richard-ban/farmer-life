@@ -8,7 +8,8 @@ namespace Texture
 {
     enum TextureType
     {
-        GRASS
+        GRASS,
+        HUMAN
     };
 
     class TextureManager
@@ -20,6 +21,7 @@ namespace Texture
 
     private:
         sf::Texture* tileset;
+        sf::Texture* character;
     };
 }
 
