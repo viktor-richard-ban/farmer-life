@@ -1,4 +1,5 @@
-#include <SFML/Graphics.hpp>
+#include <SFML/System/Clock.hpp>
+#include <SFML/System/Time.hpp>
 #include <vector>
 #include "window.hpp"
 #include "texture.hpp"
@@ -11,6 +12,9 @@ public:
     Game();
     ~Game();
 
+    sf::Time getElapsed();
+    void restartClock();
+
     Window* getWindow();
     void handleInput();
     void update();
@@ -18,10 +22,14 @@ public:
 #endif
 
 private:
+    sf::Clock clock;
+    sf::Time elapsedTime;
+
     Window window;
     Texture::TextureManager textureManager;
     std::vector<sf::Sprite*> tiles;
 
     void drawMap();
     void drawCharacter();
+    void renderFPSCounter();
 };

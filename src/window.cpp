@@ -7,6 +7,7 @@ sf::View* camera;
 Window::Window(const std::string& title, const sf::Vector2u& size): window(sf::VideoMode({size.x, size.y}), title)
 {
     std::cout << "Window has been constructed with title: " << title << std::endl;
+    window.setFramerateLimit(60);
 }
 
 Window::~Window()
@@ -43,29 +44,6 @@ void Window::update()
                 event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::Escape))
         {
             window.close();
-        }
-
-        if (event->is<sf::Event::KeyPressed>())
-        {
-            if (event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::A)
-            {
-                camera->move({-8,0});
-            }
-
-            if (event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::D)
-            {
-                camera->move({8,0});
-            }
-
-            if (event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::W)
-            {
-                camera->move({0,-8});
-            }
-
-            if (event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::S)
-            {
-                camera->move({0,8});
-            }
         }
     }
 }

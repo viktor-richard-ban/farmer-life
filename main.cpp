@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "game.hpp"
-
+#include <iostream>
 int main()
 {
     Game game;
@@ -8,5 +8,6 @@ int main()
     {
         game.update();
         game.render();
+        game.restartClock();
     }
 }
