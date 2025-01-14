@@ -2,7 +2,7 @@
 #include "window.hpp"
 #include<iostream>
 
-sf::View* camera = new sf::View(sf::FloatRect({-150.f, -150.f}, {200.f, 200.f}));
+sf::View* camera;
 
 Window::Window(const std::string& title, const sf::Vector2u& size): window(sf::VideoMode({size.x, size.y}), title)
 {
@@ -12,7 +12,6 @@ Window::Window(const std::string& title, const sf::Vector2u& size): window(sf::V
 Window::~Window()
 {
     window.close();
-    delete camera;
 }
 
 bool Window::isOpen()
@@ -23,7 +22,6 @@ bool Window::isOpen()
 void Window::beginDraw()
 {
     window.clear();
-
     window.setView(*camera);
 }
 
@@ -72,7 +70,7 @@ void Window::update()
     }
 }
 
-sf::View* Window::getCamera()
+void Window::setCamera(sf::View* newCamera)
 {
-    return camera;
+    camera = newCamera;
 }

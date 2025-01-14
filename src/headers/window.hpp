@@ -14,7 +14,7 @@ public:
     void update();
 
     void draw(sf::Drawable& drawable);
-    sf::View* getCamera();
+    void setCamera(sf::View* newCamera);
 #endif
 
 private:

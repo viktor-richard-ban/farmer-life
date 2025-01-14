@@ -3,7 +3,17 @@
 #include "texture.hpp"
 #include <iostream>
 
-Game::Game(): window("Farmer life", sf::Vector2u(800,800)), textureManager() {}
+sf::View* mainCamera = new sf::View(sf::FloatRect({-150.f, -150.f}, {200.f, 200.f}));
+
+Game::Game(): window("Farmer life", sf::Vector2u(800,800)), textureManager()
+{
+    window.setCamera(mainCamera);
+}
+
+Game::~Game()
+{
+    delete mainCamera;
+}
 
 Window* Game::getWindow() 
 {
@@ -49,9 +59,8 @@ void Game::drawCharacter()
     int width = 11;
     int height = 15;
 
-    sf::View* camera = window.getCamera();
-    float x = camera->getCenter().x - width / 2;
-    float y = camera->getCenter().y - height / 2;
+    float x = mainCamera->getCenter().x - width / 2;
+    float y = mainCamera->getCenter().y - height / 2;
 
     sf::Sprite* tile = textureManager.sprite(Texture::HUMAN);
     tile->setPosition({x, y});
