@@ -1,8 +1,8 @@
 #include <SFML/System/Clock.hpp>
 #include <SFML/System/Time.hpp>
-#include <vector>
 #include "window.hpp"
 #include "texture.hpp"
+#include "map.hpp"
 
 #ifndef GAME_HPP
 #define GAME_HPP
@@ -25,11 +25,10 @@ private:
     sf::Clock clock;
     sf::Time elapsedTime;
 
-    Window window;
-    Texture::TextureManager textureManager;
-    std::vector<sf::Sprite*> tiles;
+    Window* window;
+    Texture::TextureManager* textureManager;
+    Map map;
 
-    void drawMap();
     void drawCharacter();
     void renderFPSCounter();
 };

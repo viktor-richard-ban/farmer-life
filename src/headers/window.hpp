@@ -15,8 +15,9 @@ public:
 
     void draw(sf::Drawable& drawable);
     void setCamera(sf::View* newCamera);
-#endif
 
 private:
     sf::RenderWindow window;
 };
+
+#endif

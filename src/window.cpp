@@ -7,7 +7,6 @@ sf::View* camera;
 Window::Window(const std::string& title, const sf::Vector2u& size): window(sf::VideoMode({size.x, size.y}), title)
 {
     std::cout << "Window has been constructed with title: " << title << std::endl;
-    window.setFramerateLimit(60);
 }
 
 Window::~Window()

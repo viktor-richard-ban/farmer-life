@@ -1,5 +1,4 @@
 #include "game.hpp"
-#include "texture.hpp"
 #include <format>
 #include <iostream>
 
@@ -7,14 +6,17 @@ sf::View* mainCamera = new sf::View(sf::FloatRect({-150.f, -150.f}, {800, 800}))
 float scale = 3;
 float fps = 0;
 
-Game::Game(): window("Farmer life", sf::Vector2u(800,800))
+Game::Game(): textureManager(new Texture::TextureManager()), map(textureManager)
 {
-    window.setCamera(mainCamera);
+    window = new Window("Farmer life", sf::Vector2u(800,800));
+    window->setCamera(mainCamera);
 }
 
 Game::~Game()
 {
     delete mainCamera;
+    delete window;
+    delete textureManager;
 }
 
 sf::Time Game::getElapsed()
@@ -30,43 +32,24 @@ void Game::restartClock()
 
 Window* Game::getWindow() 
 {
-    return &window;
+    return window;
 }
 
 void Game::update()
 {
-    window.update();
+    window->update();
 }
 
 void Game::render()
 {
-    window.beginDraw();
+    window->beginDraw();
  
-    for (sf::Sprite* sprite : tiles) {
-        delete sprite;
-        sprite = nullptr;
-    }
-    tiles.clear();
-
-    drawMap();
+    map.draw(window);
+ 
     drawCharacter();
     renderFPSCounter();
 
-    window.endDraw();
-}
-
-void Game::drawMap()
-{
-   for (int y = 0; y < 10; y++) {
-        for (int x = 0; x < 10; x++) {
-            sf::Sprite* tile = textureManager.sprite(Texture::GRASS);
-            tile->setPosition({(float)x * 16 * scale, (float)y * 16 * scale});
-            tiles.push_back(tile);
-            tile->setScale({scale,scale});
-
-            window.draw(*tile);
-        }
-    }
+    window->endDraw();
 }
 
 void Game::drawCharacter()
@@ -96,13 +79,12 @@ void Game::drawCharacter()
     float x = mainCamera->getCenter().x - width / 2;
     float y = mainCamera->getCenter().y - height / 2;
 
-    sf::Sprite* tile = textureManager.sprite(Texture::HUMAN);
+    // create character object once not to create it each time we refresh the screen
+    sf::Sprite* tile = textureManager->sprite(Texture::HUMAN);  // FIXME: memory leak
     tile->setPosition({x, y});
     tile->setScale({scale,scale});
 
-    tiles.push_back(tile);
-
-    window.draw(*tile);
+    window->draw(*tile);
 }
 
 void Game::renderFPSCounter()
@@ -117,5 +99,5 @@ void Game::renderFPSCounter()
 
 
     text.setPosition({ x , y});
-    window.draw(text);
+    window->draw(text);
 }
