@@ -3,6 +3,7 @@
 #include "window.hpp"
 #include "texture.hpp"
 #include "map.hpp"
+#include "character.hpp"
 
 #ifndef GAME_HPP
 #define GAME_HPP
@@ -28,6 +29,7 @@ private:
     Window* window;
     Texture::TextureManager* textureManager;
     Map map;
+    Character character;
 
     void drawCharacter();
     void renderFPSCounter();
