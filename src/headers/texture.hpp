@@ -9,7 +9,9 @@ namespace Texture
     enum TextureType
     {
         GRASS,
-        HUMAN
+        GRASS_BUBBLE,
+        HUMAN,
+        EMPTY
     };
 
     class TextureManager
@@ -22,6 +24,7 @@ namespace Texture
     private:
         sf::Texture* tileset;
         sf::Texture* character;
+        sf::Texture* empty;
     };
 }
 

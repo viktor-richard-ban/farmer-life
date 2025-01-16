@@ -9,6 +9,9 @@ namespace Texture
 
         character = new sf::Texture();
         successfull = character->loadFromFile("assets/human.png");
+
+        empty = new sf::Texture();
+        successfull = empty->loadFromFile("assets/empty.png");
     }
 
     sf::Sprite* TextureManager::sprite(TextureType type)
@@ -17,11 +20,15 @@ namespace Texture
 
         switch (type) {
             case GRASS:
+                tileRect = sf::IntRect({2 * 16, 1 * 16}, {16, 16});
+                return new sf::Sprite(*tileset, tileRect);
+            case GRASS_BUBBLE:
                 tileRect = sf::IntRect({2 * 16, 2 * 16}, {16, 16});
                 return new sf::Sprite(*tileset, tileRect);
             case HUMAN:
-                tileRect = sf::IntRect({0, 0}, {11, 15});
-                return new sf::Sprite(*character, tileRect);
+                return new sf::Sprite(*character);
+            case EMPTY:
+                return new sf::Sprite(*empty);
         }
     }
 }

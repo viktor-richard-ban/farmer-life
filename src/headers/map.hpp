@@ -14,5 +14,7 @@ public:
 
 private:
     Texture::TextureManager* textureManager;
-    char map[10][10];
+    std::vector<std::vector<int>> map;
+
+    Texture::TextureType getTextureById(int id);
 };
