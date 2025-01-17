@@ -44,6 +44,11 @@ void Window::update()
         {
             window.close();
         }
+
+        if (const auto* resized = event->getIf<sf::Event::Resized>())
+        {
+            camera->setSize(sf::Vector2f(resized->size));
+        }
     }
 }
 

@@ -13,11 +13,8 @@ public:
     Game();
     ~Game();
 
-    sf::Time getElapsed();
-    void restartClock();
-
     Window* getWindow();
-    void handleInput();
+    void restartClock();
     void update();
     void render();
 #endif
@@ -25,12 +22,14 @@ public:
 private:
     sf::Clock clock;
     sf::Time elapsedTime;
+    float fps;
 
     Window* window;
+    sf::View* mainCamera;
+
     Texture::TextureManager* textureManager;
     Map map;
-    Character character;
+    Character player;
 
-    void drawCharacter();
     void renderFPSCounter();
 };

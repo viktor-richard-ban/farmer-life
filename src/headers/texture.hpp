@@ -1,8 +1,6 @@
-#include <SFML/Graphics.hpp>
-#include <map>
+#pragma once
 
-#ifndef TEXTURE_HPP
-#define TEXTURE_HPP
+#include <SFML/Graphics.hpp>
 
 namespace Texture
 {
@@ -14,12 +12,20 @@ namespace Texture
         EMPTY
     };
 
+    struct TileInfo
+    {
+        sf::Texture* tileset;
+        sf::IntRect tileRect;
+        float scale;
+    };
+
     class TextureManager
     {
     public:
         TextureManager();
+        ~TextureManager();
 
-        sf::Sprite* sprite(TextureType type);
+        TileInfo tileInfo(TextureType type);
 
     private:
         sf::Texture* tileset;
@@ -27,5 +33,3 @@ namespace Texture
         sf::Texture* empty;
     };
 }
-
-#endif

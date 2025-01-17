@@ -14,21 +14,35 @@ namespace Texture
         successfull = empty->loadFromFile("assets/empty.png");
     }
 
-    sf::Sprite* TextureManager::sprite(TextureType type)
+    TextureManager::~TextureManager()
     {
-        sf::IntRect tileRect;
+        delete tileset;
+        delete character;
+        delete empty;
+    }
+
+    TileInfo TextureManager::tileInfo(TextureType type)
+    {
+        Texture::TileInfo tileInfo;
+        tileInfo.scale = 3;
 
         switch (type) {
             case GRASS:
-                tileRect = sf::IntRect({2 * 16, 1 * 16}, {16, 16});
-                return new sf::Sprite(*tileset, tileRect);
+                tileInfo.tileset = tileset;
+                tileInfo.tileRect = sf::IntRect({2 * 16, 1 * 16}, {16, 16});
+                return tileInfo;
             case GRASS_BUBBLE:
-                tileRect = sf::IntRect({2 * 16, 2 * 16}, {16, 16});
-                return new sf::Sprite(*tileset, tileRect);
+                tileInfo.tileset = tileset;
+                tileInfo.tileRect = sf::IntRect({2 * 16, 2 * 16}, {16, 16});
+                return tileInfo;
             case HUMAN:
-                return new sf::Sprite(*character);
-            case EMPTY:
-                return new sf::Sprite(*empty);
+                tileInfo.tileset = character;
+                tileInfo.tileRect = sf::IntRect({0, 0}, {11, 15});
+                return tileInfo;
+            default:
+                tileInfo.tileset = empty;
+                tileInfo.tileRect = sf::IntRect({0, 0}, {16, 16});
+                return tileInfo;
         }
     }
 }
