@@ -49,6 +49,19 @@ void Window::update()
         {
             camera->setSize(sf::Vector2f(resized->size));
         }
+
+        if (const auto* scroll = event->getIf<sf::Event::MouseWheelScrolled>()) {
+            if (scroll->wheel == sf::Mouse::Wheel::Vertical && scroll->delta != 1 && scroll->delta != 0) {
+                if (scroll->delta > 0)
+                {
+                    camera->zoom(1.2);
+                }
+                else
+                {
+                    camera->zoom(0.8);
+                }
+            }
+        }
     }
 }
 
