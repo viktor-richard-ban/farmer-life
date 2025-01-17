@@ -2,11 +2,14 @@
 #include <format>
 #include <iostream>
 
+#define WIDTH 1024
+#define HEIGHT 768 
+
 Game::Game(): textureManager(new Texture::TextureManager()), 
-mainCamera(new sf::View(sf::FloatRect({-150.f, -150.f}, {800, 800}))), 
+mainCamera(new sf::View(sf::FloatRect({-150.f, -150.f}, {WIDTH, HEIGHT}))), 
 map(*textureManager), player(*textureManager)
 {
-    window = new Window("Farmer life", sf::Vector2u(800,800));
+    window = new Window("Farmer life", sf::Vector2u(WIDTH, HEIGHT));
     window->setCamera(mainCamera);
 }
 
