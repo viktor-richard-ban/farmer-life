@@ -39,6 +39,14 @@ namespace Texture
                 tileInfo.tileset = character;
                 tileInfo.tileRect = sf::IntRect({0, 0}, {11, 15});
                 return tileInfo;
+            case WATER_BARREL:
+                tileInfo.tileset = tileset;
+                tileInfo.tileRect = sf::IntRect({610, 256}, {13, 16});
+                return tileInfo;
+            case TREE:
+                tileInfo.tileset = tileset;
+                tileInfo.tileRect = sf::IntRect({823, 100}, {18, 35});
+                return tileInfo;
             default:
                 tileInfo.tileset = empty;
                 tileInfo.tileRect = sf::IntRect({0, 0}, {16, 16});

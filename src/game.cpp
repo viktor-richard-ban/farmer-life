@@ -6,11 +6,13 @@
 #define HEIGHT 768 
 
 Game::Game(): textureManager(new Texture::TextureManager()), 
-mainCamera(new sf::View(sf::FloatRect({-150.f, -150.f}, {WIDTH, HEIGHT}))), 
-map(*textureManager), player(*textureManager), window(new Window("Farmer life", sf::Vector2u(WIDTH, HEIGHT))), renderer(*window)
+mainCamera(new sf::View(sf::FloatRect({-150.f, -150.f}, {WIDTH, HEIGHT}))),
+map(*textureManager), player(*textureManager), window(new Window("Farmer life", sf::Vector2u(WIDTH, HEIGHT))), renderer(*window), barrel(*textureManager), tree(*textureManager)
 {
     window->setCamera(mainCamera);
     renderer.addObject(&player);
+    renderer.addObject(&barrel);
+    renderer.addObject(&tree);
 }
 
 Game::~Game()

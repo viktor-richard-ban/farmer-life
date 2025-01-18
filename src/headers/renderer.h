@@ -1,13 +1,16 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <list>
+#include <vector>
 #include "window.hpp"
 
 class Renderable
 {
 public:
     virtual ~Renderable();
+
+    sf::Vector2f position;
+    sf::Vector2u size;
 
     virtual void render(Window& window) = 0;
 };
@@ -22,5 +25,5 @@ public:
 
 private:
     Window& window;
-    std::list<Renderable*> objects;
+    std::vector<Renderable*> objects;
 };

@@ -53,7 +53,8 @@
         "algorithm": "cpp",
         "__tree": "cpp",
         "map": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "list": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

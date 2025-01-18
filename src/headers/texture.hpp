@@ -9,6 +9,8 @@ namespace Texture
         GRASS,
         GRASS_BUBBLE,
         HUMAN,
+        WATER_BARREL,
+        TREE,
         EMPTY
     };
 

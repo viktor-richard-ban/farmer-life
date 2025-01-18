@@ -12,9 +12,6 @@ public:
     Character(Texture::TextureManager& textureManager);
     ~Character();
 
-    sf::Vector2f position;
-    sf::Vector2u size;
-
     void render(Window& window) override;
     void handleEvents(sf::Time elapsedTime); 
 
