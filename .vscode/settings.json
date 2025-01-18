@@ -54,5 +54,6 @@
         "__tree": "cpp",
         "map": "cpp",
         "type_traits": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

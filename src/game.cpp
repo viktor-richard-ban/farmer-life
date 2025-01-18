@@ -7,10 +7,10 @@
 
 Game::Game(): textureManager(new Texture::TextureManager()), 
 mainCamera(new sf::View(sf::FloatRect({-150.f, -150.f}, {WIDTH, HEIGHT}))), 
-map(*textureManager), player(*textureManager)
+map(*textureManager), player(*textureManager), window(new Window("Farmer life", sf::Vector2u(WIDTH, HEIGHT))), renderer(*window)
 {
-    window = new Window("Farmer life", sf::Vector2u(WIDTH, HEIGHT));
     window->setCamera(mainCamera);
+    renderer.addObject(&player);
 }
 
 Game::~Game()
@@ -41,11 +41,11 @@ void Game::render()
     /*      Begin render    */
     window->beginDraw();
     player.handleEvents(elapsedTime);
+    mainCamera->setCenter({player.position.x - (player.size.x / 2), player.position.y - (player.size.y / 2)});
  
     /*      Start render    */
     map.draw(*window);
-    player.draw(*window);
-    mainCamera->setCenter({player.position.x - (player.size.x / 2), player.position.y - (player.size.y / 2)});
+    renderer.render();
 
     renderFPSCounter();
 

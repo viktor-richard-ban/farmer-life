@@ -4,6 +4,7 @@
 #include "texture.hpp"
 #include "map.hpp"
 #include "character.hpp"
+#include "renderer.h"
 
 #ifndef GAME_HPP
 #define GAME_HPP
@@ -30,6 +31,7 @@ private:
     Texture::TextureManager* textureManager;
     Map map;
     Character player;
+    Renderer renderer;
 
     void renderFPSCounter();
 };

@@ -17,9 +17,8 @@ Character::~Character()
     delete tile;
 }
 
-void Character::draw(Window& window)
+void Character::render(Window& window)
 {
-    tile->setPosition({position});
     window.draw(*tile);
 
     /*           Only for testing purpose           */
@@ -53,4 +52,6 @@ void Character::handleEvents(sf::Time elapsedTime)
     {
         position.x += diff;
     }
+
+     tile->setPosition({position});
 }
