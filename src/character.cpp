@@ -21,6 +21,7 @@ void Character::render(Window& window)
 {
     window.draw(*tile);
 
+    #ifdef DEBUG
     /*           Only for testing purpose           */
     sf::RectangleShape frame;
     frame.setSize({rect.size.x, rect.size.y});
@@ -29,6 +30,8 @@ void Character::render(Window& window)
     frame.setOutlineColor(sf::Color::Blue);
     frame.setFillColor(sf::Color::Transparent);
     window.draw(frame);
+
+    #endif
 }
 
 void Character::handleEvents(sf::Time elapsedTime)

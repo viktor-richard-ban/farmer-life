@@ -2,6 +2,7 @@
 CXX = g++
 CXXFLAGS = -std=c++23 -I/opt/homebrew/include -Isrc/headers
 LDFLAGS = -L/opt/homebrew/lib -lsfml-graphics -lsfml-window -lsfml-system
+DEVFLAGS = -DDEBUG
 
 # Directories
 SRC_DIR = src
@@ -35,6 +36,11 @@ $(BIN_DIR)/main.o: main.cpp
 
 # Run target to execute the game after building
 run: all
+	./$(TARGET)
+
+# Dev rule to add extra compiler flags
+dev: CXXFLAGS += $(DEVFLAGS)
+dev: all
 	./$(TARGET)
 
 # Clean rule to remove compiled files

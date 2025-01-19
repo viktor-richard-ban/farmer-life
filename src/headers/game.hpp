@@ -24,6 +24,7 @@ public:
         window.draw(*tile);
         opacity = 1;
 
+         #ifdef DEBUG
         /*           Only for testing purpose           */
         sf::RectangleShape frame;
         frame.setSize({rect.size.x, rect.size.y});
@@ -32,6 +33,7 @@ public:
         frame.setOutlineColor(sf::Color::Red);
         frame.setFillColor(sf::Color::Transparent);
         window.draw(frame);
+        #endif
     }
 
 private:
@@ -54,6 +56,7 @@ public:
         window.draw(*tile);
         opacity = 1;
 
+        #ifdef DEBUG
         /*           Only for testing purpose           */
         sf::RectangleShape frame;
         frame.setSize({rect.size.x, rect.size.y});
@@ -62,6 +65,7 @@ public:
         frame.setOutlineColor(sf::Color::Red);
         frame.setFillColor(sf::Color::Transparent);
         window.draw(frame);
+        #endif
     }
 
 private:
