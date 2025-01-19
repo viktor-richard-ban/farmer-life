@@ -9,6 +9,7 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
+// TODO: - Move Barrel and Tree objects to the proper place, probably we should use a single class to represent them
 class Barrel : public Renderable {
 public:
     Barrel(Texture::TextureManager& textureManager) : textureManager(textureManager) {
