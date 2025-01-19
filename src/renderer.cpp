@@ -13,8 +13,12 @@ void Renderer::addObject(Renderable* object)
 
 void Renderer::render()
 {
-    std::sort(objects.begin(), objects.end(), [](const Renderable* a, const Renderable* b) {
-        return (a->position.y + a->size.y) < (b->position.y + b->size.y);
+    std::sort(objects.begin(), objects.end(), [](Renderable* a, Renderable* b) {
+        std::optional<sf::FloatRect> intersection = a->rect.findIntersection(b->rect);
+        if (intersection.has_value()) {
+            a->opacity = 0.5;
+        }
+        return (a->rect.position.y + a->rect.size.y) < (b->rect.position.y + b->rect.size.y);
     });
 
     for (Renderable* object : objects)

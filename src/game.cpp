@@ -43,7 +43,7 @@ void Game::render()
     /*      Begin render    */
     window->beginDraw();
     player.handleEvents(elapsedTime);
-    mainCamera->setCenter({player.position.x - (player.size.x / 2), player.position.y - (player.size.y / 2)});
+    mainCamera->setCenter({player.rect.position.x - (player.rect.size.x / 2), player.rect.position.y - (player.rect.size.y / 2)});
  
     /*      Start render    */
     map.draw(*window);

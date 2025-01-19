@@ -9,8 +9,8 @@ class Renderable
 public:
     virtual ~Renderable();
 
-    sf::Vector2f position;
-    sf::Vector2u size;
+    sf::FloatRect rect;
+    float opacity;
 
     virtual void render(Window& window) = 0;
 };
