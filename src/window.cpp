@@ -4,8 +4,9 @@
 
 sf::View* camera;
 
-Window::Window(const std::string& title, const sf::Vector2u& size): window(sf::VideoMode({size.x, size.y}), title)
+Window::Window(const std::string& title, const sf::Vector2u& size, EventManager* eventManager): window(sf::VideoMode({size.x, size.y}), title)
 {
+    this->eventManager = eventManager;
     std::cout << "Window has been constructed with title: " << title << std::endl;
 }
 
@@ -37,14 +38,17 @@ void Window::endDraw()
 
 void Window::update()
 {
-    while(const std::optional event = window.pollEvent()){
-        if(event->is<sf::Event::Closed>() ||
-            (event->is<sf::Event::KeyPressed>() &&
-                event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::Escape))
+    while(std::optional<sf::Event> event = window.pollEvent()){
+        // Close
+        if (event->is<sf::Event::KeyPressed>())
         {
-            window.close();
+            if(event->is<sf::Event::Closed>() || event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::Escape)
+            {
+                window.close();
+            }
         }
 
+        // Resize
         if (const auto* resized = event->getIf<sf::Event::Resized>())
         {
             camera->setSize(sf::Vector2f(resized->size));
@@ -61,6 +65,11 @@ void Window::update()
                     camera->zoom(0.8);
                 }
             }
+        }
+
+        if (event.has_value())
+        {
+            eventManager->handle(event.value());
         }
     }
 }

@@ -1,13 +1,17 @@
 #include "game.hpp"
 #include <format>
-#include <iostream>
 
 #define WIDTH 1024
 #define HEIGHT 768 
 
 Game::Game(): textureManager(new Texture::TextureManager()), 
 mainCamera(new sf::View(sf::FloatRect({-150.f, -150.f}, {WIDTH, HEIGHT}))),
-map(*textureManager), player(*textureManager), window(new Window("Farmer life", sf::Vector2u(WIDTH, HEIGHT))), renderer(*window), barrel(*textureManager), tree(*textureManager)
+map(*textureManager),
+player(*textureManager, &eventManager),
+window(new Window("Farmer life", sf::Vector2u(WIDTH, HEIGHT), &eventManager)),
+renderer(*window),
+barrel(*textureManager),
+tree(*textureManager)
 {
     window->setCamera(mainCamera);
     renderer.addObject(&player);
@@ -42,7 +46,7 @@ void Game::render()
 {
     /*      Begin render    */
     window->beginDraw();
-    player.handleEvents(elapsedTime);
+    eventManager.elapsedTime = elapsedTime;
     mainCamera->setCenter({player.rect.position.x - (player.rect.size.x / 2), player.rect.position.y - (player.rect.size.y / 2)});
  
     /*      Start render    */

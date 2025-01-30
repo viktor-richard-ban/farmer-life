@@ -1,11 +1,12 @@
 #include <SFML/Graphics.hpp>
+#include "event_manager.hpp"
 
 #ifndef WINDOW_HPP
 #define WINDOW_HPP
 
 class Window {
 public:
-    Window(const std::string& title, const sf::Vector2u& size);
+    Window(const std::string& title, const sf::Vector2u& size, EventManager* eventManager);
     ~Window();
 
     bool isOpen();
@@ -18,6 +19,7 @@ public:
 
 private:
     sf::RenderWindow window;
+    EventManager* eventManager;
 };
 
 #endif

@@ -5,6 +5,7 @@
 #include "map.hpp"
 #include "character.hpp"
 #include "renderer.h"
+#include "event_manager.hpp"
 
 #ifndef GAME_HPP
 #define GAME_HPP
@@ -94,6 +95,7 @@ private:
     sf::View* mainCamera;
 
     Texture::TextureManager* textureManager;
+    EventManager eventManager;
     Map map;
     Character player;
     Barrel barrel;

@@ -54,7 +54,8 @@
         "__tree": "cpp",
         "map": "cpp",
         "type_traits": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "unordered_set": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
